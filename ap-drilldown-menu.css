@@ -1,0 +1,33 @@
+div.ap-ddmenu {overflow: hidden; position: relative;}
+.ap-ddmenu-scroll {overflow: scroll; overflow-x: hidden;}
+ul.ap-ddmenu-top, ul.ap-ddmenu-top ul {list-style: none; margin: 0; padding: 0; width: 100%; position: absolute; top: 0; left: 0;}
+ul.ap-ddmenu-top ul {display: none;}
+ul.ap-ddmenu-top li {border-bottom: 1px solid #ccc;}
+
+ul.ap-ddmenu-top a {display: block; position: relative; color: #000; text-decoration: none; padding: 5px 20px 5px 10px;}
+ul.ap-ddmenu-top a span.ap-ddmenu-link-icon {background-image: url(images/arrow.png); background-repeat: no-repeat; background-position: right center; width: 11px; height: 13px; position: absolute; right: 5px; top: 50%; margin-top: -6px;}
+.ap-ddmenu a:hover {
+	background-color: #4185f4; /* Old browsers */
+	background-image: -moz-linear-gradient(top,  #4185f4 0%, #194fdb 65%, #194fdb 100%); /* FF3.6+ */
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#4185f4), color-stop(65%,#194fdb), color-stop(100%,#194fdb)); /* Chrome,Safari4+ */
+	background-image: -webkit-linear-gradient(top,  #4185f4 0%,#194fdb 65%,#194fdb 100%); /* Chrome10+,Safari5.1+ */
+	background-image: -o-linear-gradient(top,  #4185f4 0%,#194fdb 65%,#194fdb 100%); /* Opera 11.10+ */
+	background-image: -ms-linear-gradient(top,  #4185f4 0%,#194fdb 65%,#194fdb 100%); /* IE10+ */
+	background-image: linear-gradient(top,  #4185f4 0%,#194fdb 65%,#194fdb 100%); /* W3C */
+	color: #fff;
+}
+.ap-ddmenu a:hover span.ap-ddmenu-link-icon {background-image: url(images/arrow-hover.png);}
+
+.ap-ddmenu-header {
+	background-color: #aab8c9; /* Old browsers */
+	background-image: -moz-linear-gradient(top, #aab8c9 0%, #6e84a2 50%, #6e84a2 100%); /* FF3.6+ */
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#aab8c9), color-stop(50%,#6e84a2), color-stop(100%,#6e84a2)); /* Chrome,Safari4+ */
+	background-image: -webkit-linear-gradient(top, #aab8c9 0%,#6e84a2 50%,#6e84a2 100%); /* Chrome10+,Safari5.1+ */
+	background-image: -o-linear-gradient(top, #aab8c9 0%,#6e84a2 50%,#6e84a2 100%); /* Opera 11.10+ */
+	background-image: -ms-linear-gradient(top, #aab8c9 0%,#6e84a2 50%,#6e84a2 100%); /* IE10+ */
+	background-image: linear-gradient(top, #aab8c9 0%,#6e84a2 50%,#6e84a2 100%); /* W3C */
+    font-size: 14px;  color: #fff; padding: 0 10px; text-shadow: 0px 1px 0px #000; position: relative; height: 30px; line-height: 30px;
+}
+.ap-ddmenu-back {position: absolute; left: 5px; top: 5px; color: #fff; text-decoration: none; line-height: 15px;}
+.ap-ddmenu-back span {display: block; width: 0;	height: 0; border-top: 6px solid transparent; border-bottom: 6px solid transparent;	border-right:6px solid #fff; float: left; margin-right: 5px; margin-top: 2px;}
+.ap-ddmenu-current-text {margin-left: 75px; padding-right: 5px; overflow: hidden;}

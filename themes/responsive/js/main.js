@@ -6,8 +6,20 @@
 		});
 
 		$('#nav-button').on('click', function(e){
-			$('.navigation .menu').stop(1,1).slideToggle();
+
+			e.preventDefault();
+
+			if ( !$('.navigation').is(':animated') ) {
+				$('.navigation').slideToggle('fast', function(){
+					var el = $(this);
+					el.toggleClass('expanded');
+					if (el.hasClass('expanded')) $('.navigation ul:first').apDrillDownMenu();
+				});
+			}
 		});
+
+		$('.navigation ul:first').apDrillDownMenu();
+
 	});
 
 	function placeWindowWidth(selector){

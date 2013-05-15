@@ -77,7 +77,7 @@ a {text-decoration: none;}
 
 .navigation a {color: #fff;}
 .navigation {float: right;}
-.navigation .menu {display: block;}
+.navigation .menu {display: block;position: relative;}
 .navigation .menu li {position: relative;display: block;float: left;}
 .navigation .menu li > .submenu {display: none;position: absolute;top: 100%;left: 0;background: #fff;box-shadow: 0 1px 5px 1px rgba(0,0,0,0.2);min-width: 100%;}
 .navigation .menu li > .submenu li {float: none;clear: both;font-size: 75%;font-weight: bold;text-transform: uppercase;}
@@ -114,19 +114,28 @@ a#nav-button {
 }
 
 @media only screen and (max-width: 790px){
-	.navigation .menu {display: none;}
-	.navigation, .logo, .navigation .menu > li {float: none;}
-	.navigation .menu li > a {display: block;padding: 10px}
-	.navigation .menu > li:hover .submenu {display: none;}
+	.navigation {display: none;}
+	.navigation .menu {display: block;}
+	.navigation, .logo, .navigation .menu li {float: none;position: static;}
+	.navigation .menu li > a, .navigation .menu li > .submenu > li > a {display: block;padding: 10px}
+	.navigation .menu li a, .navigation .menu li .submenu a {border-bottom:1px solid rgb(0, 71, 111);color: #fff}
+	.navigation .menu li > .submenu {position: relative;left: auto;top: auto;bottom: auto;background: none;font-size: inherit;box-shadow: none;min-width: 0;position: absolute;width: 100%;top: 0}
+	.navigation .menu li:hover > .submenu {display: none;}
+	.navigation .menu li > .submenu li {float: none;clear: both;font-size: inherit;font-weight: 400;text-transform: none;}
 
-	.navigation .menu li a {border-bottom:1px solid rgb(0, 71, 111);}
+	.navigation .menu li:last-child a {border-bottom: 0 none;}
 
 	#header .logo {display: block;width:160px;background-position: center center;margin: 9px 0 0 3%;background-size: 100%;}
 	.navigation {clear: both;}
 
 	a#nav-button {display: block;}
 
+
 	#header .header-inner {padding: 0;}
+
+	.ap-ddmenu-header {display: block;position: relative;background: #333;box-shadow: 0 1px 5px 0 rgba(0,0,0,0.5) inset;height: 35px}
+	.ap-ddmenu-header .ap-ddmenu-current-text {text-align: center;color: #fff;font-weight: 400;padding:10px 0;}
+	.ap-ddmenu-header .ap-ddmenu-back {position: absolute;left: 12px;top: 11px;font-size: 87.5%;font-weight: 700;}
 }
 
 

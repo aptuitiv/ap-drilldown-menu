@@ -112,7 +112,6 @@
 						var link = $(this);
 						// If the link has a child menu
 						if (link.next().is('ul')) {
-							link.parent('li').addClass(opts.submenuParentclass);
 							if (opts.prependCurrentOnChild) {
 								var clone = link.clone(true);
 								var li = $('<li></li>');
@@ -159,7 +158,6 @@
 		backLinkSelector: 'a.ap-ddmenu-back',
 		currentText: true,
 		currentTextSelector: '.ap-ddmenu-current-text',
-		submenuParentClass: 'ap-ddmenu-submenu-parent',
 		prependCurrentOnChild: true,
 		prependCurrentOnChildCallback: function() {}
 	};

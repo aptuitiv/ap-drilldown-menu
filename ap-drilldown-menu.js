@@ -114,7 +114,7 @@
 						if (link.next().is('ul')) {
 							if (opts.prependCurrentOnChild) {
 								var clone = link.clone(true);
-								var li = $('<li></li>');
+								var li = $('<li class="sub-menu-parent"></li>');
 								li.append(clone);
 								
 								link.next().prepend(li);

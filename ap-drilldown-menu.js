@@ -167,5 +167,3 @@
 		prependCurrentOnChildCallback: function() {}
 	};
 })(jQuery);
-
-// test

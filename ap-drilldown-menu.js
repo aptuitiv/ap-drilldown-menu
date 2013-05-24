@@ -114,7 +114,12 @@
 						if (link.next().is('ul')) {
 							if (opts.prependCurrentOnChild) {
 								var clone = link.clone(true);
-								var li = $('<li class="sub-menu-parent"></li>');
+
+								if (opts.prependCurrentClass.length > 0 && typeof opts.prependCurrentClass == 'string') {
+									var li = $('<li class="' + opts.prependCurrentClass + '"></li>');
+								} else {
+									var li = $('<li class=""></li>');
+								}
 								li.append(clone);
 								
 								link.next().prepend(li);
@@ -157,6 +162,7 @@
 		backLinkSelector: 'a.ap-ddmenu-back',
 		currentText: true,
 		currentTextSelector: '.ap-ddmenu-current-text',
+		prependCurrentClass: '',
 		prependCurrentOnChild: true,
 		prependCurrentOnChildCallback: function() {}
 	};

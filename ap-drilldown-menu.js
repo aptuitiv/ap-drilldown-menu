@@ -118,7 +118,7 @@
 								if (opts.prependCurrentClass.length > 0 && typeof opts.prependCurrentClass == 'string') {
 									var li = $('<li class="' + opts.prependCurrentClass + '"></li>');
 								} else {
-									var li = $('<li class=""></li>');
+									var li = $('<li></li>');
 								}
 								li.append(clone);
 								
@@ -167,3 +167,5 @@
 		prependCurrentOnChildCallback: function() {}
 	};
 })(jQuery);
+
+// test

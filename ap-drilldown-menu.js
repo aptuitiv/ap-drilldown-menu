@@ -29,6 +29,7 @@
 		    			container.height(el.height());
 		    		}
 	    		};
+
 	    		var setup = menu.data('apDrillDownMenuSetup');
 
 				if (setup != 'yes') {
@@ -134,7 +135,8 @@
 							link.append('<span class="' + css.icon + '"></span>');
 
 							link.click(function() {
-								if ( $(window).width() <= opts.windowWidth) {
+								// Checking window width - need to know whether to make the click event scroll down the menus or not.
+								if ( $(window).width() <= opts.maxWindowWidth) {
 									var nextList = $(this).next();
 									var parentList = link.parents('ul:first');
 									var isFirstLevel = parentList.is(css.menuTopTest);
@@ -156,16 +158,17 @@
 					});
 
 					$(window).resize(function(){
-						w = $(window).width();
+						fixWidths();
 
-						if ( w > opts.windowWidth ) {
-							// Reset the height so the header doesn't screw up on resize.
+						if ( $(window).width() > opts.maxWindowWidth ){
 							ancestor.show();
 							container.css('height', 0);
-						} else {
-							ancestor.hide();
-							container.css('height', $('.ap-ddmenu-current').css('height'));
+							menu.find('li').blur();
 						}
+						else {
+							container.css('height', $('.' + css.current).css('height'));
+						}
+
 					});
 
 		    	} else {
@@ -177,7 +180,7 @@
 	    });
 	};
 	$.fn.apDrillDownMenu.defaults = {
-		windowWidth: 850, // Width that the navigation becomes "active"
+		maxWindowWidth: 850, // Width that the navigation becomes "active"
 		width: '100%',
 		height: 'auto',
 		showSpeed: 200,

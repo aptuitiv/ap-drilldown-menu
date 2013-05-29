@@ -163,10 +163,11 @@
 						if ( $(window).width() > opts.maxWindowWidth ){
 							ancestor.show();
 							container.css('height', 0);
-							menu.find('li').blur();
-						}
-						else {
+							menu.find('li').trigger('blur');
+							$(css.menuTopTest).find('ul').attr('style', '');
+						} else {
 							container.css('height', $('.' + css.current).css('height'));
+							$('.' + css.current).show().parentsUntil(css.menuTopTest).show();
 						}
 
 					});

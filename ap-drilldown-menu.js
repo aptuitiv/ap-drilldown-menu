@@ -101,7 +101,7 @@
 		    		var fixWidths = function() {
 		    			var current = $('.' + css.current, menu);
 		    			var numParents = current.parentsUntil('.' + css.menuWrapper, 'ul').length;
-		    			var width = container.width();
+		    			var width = parseInt(container.css('width'));
 		    			if (numParents > 0) {
 		    				menu.css('left', (numParents * width * -1));
 		    				current.parentsUntil('.' + css.menuTop, 'ul').css('left', width);

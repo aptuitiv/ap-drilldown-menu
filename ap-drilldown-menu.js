@@ -157,18 +157,13 @@
 
 					$(window).resize(function(){
 						w = $(window).width();
+
 						if ( w > opts.windowWidth ) {
 							// Reset the height so the header doesn't screw up on resize.
 							ancestor.show();
 							container.css('height', 0);
 						} else {
-							// Resetting the ancestor.
-							ancestor.hide().removeClass('expanded');
-
-							// The .blur() removes the :hover state bug that is happening on iPad.
-							menu.children('li').blur();
-
-							// Resetting the height of the current menu so there aren't any dimension issues.
+							ancestor.hide();
 							container.css('height', $('.ap-ddmenu-current').css('height'));
 						}
 					});

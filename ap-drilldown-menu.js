@@ -12,11 +12,14 @@
 		};
 		css.menuTopTest = '.' + css.menuTop;
 	    return this.each(function() {
-	    	
+
 	    	if (this.tagName.toLowerCase() == 'ul') {
 				var menu = $(this);
 				var container = menu.parent();
-				
+				var ancestor;
+
+				var w = $(window).width();
+
 				// Checks the height of the element against the max height
 				var checkHeight = function(el) {
 	    			if (maxHeight > 0) {
@@ -27,20 +30,24 @@
 		    		}
 	    		};
 	    		var setup = menu.data('apDrillDownMenuSetup');
+
 				if (setup != 'yes') {
 					menu.data('apDrillDownMenuSetup', 'yes');
 					menu.addClass(css.menuTop).addClass(css.current);
 					menu.wrap('<div class="' + css.menuWrapper + '"></div>');
 					container = menu.parent();
 					container.css({width: opts.width, height: opts.height});
-					
+
+					// Getting the parent of the new container.
+					ancestor = container.parent();
+
 					// Handle the back link if it's setup
 					var backLink = false;
 					if (opts.backLink == true && opts.backLinkSelector != undefined) {
 						backLink = $(opts.backLinkSelector).hide();
 						backLink.click(function() {
 							var b = $(this);
-				    		var prevLeftVal = parseFloat(menu.css('left')) + container.width();	
+				    		var prevLeftVal = parseFloat(menu.css('left')) + container.width();
 				    		menu.animate({ left: prevLeftVal },  opts.showSpeed, function(){
 				    			var current = $('ul.' + css.current, menu);
 				    			current.hide();
@@ -50,18 +57,18 @@
 				    			if (currentTextHolder != false && currentParent.is(css.menuTopTest) == false) {
 				    				currentTextHolder.text(currentParent.prev().text());
 				    			}
-				    		});	
+				    		});
 				    		return false;
 						});
 					}
-					
+
 					// Setup the current text placeholder if necessary
 					var currentTextHolder = false;
 					if (opts.currentText) {
 						currentTextHolder = $(opts.currentTextSelector);
 					}
 					// Set internal functions. Set here so that local variables are available
-					
+
 		    		// Resets the old current ul
 		    		var reset = function (el) {
 		    			el.removeClass(css.scroll).removeClass(css.current);
@@ -103,10 +110,10 @@
 		    		// Add listeners to fix the widths when the device is rotated or the window is resized
 		    		window.addEventListener("resize", fixWidths, false);
 		    		window.addEventListener("orientationchange", fixWidths, false);
-		    		
+
 		    		// Set the initial height of the first level menu
 		    		checkHeight(menu);
-					
+
 		    		// Handle the clicks for each menu item
 					menu.find('a').each(function() {
 						var link = $(this);
@@ -117,40 +124,59 @@
 								var li = $('<li></li>');
 
 								li.append(clone);
-								
+
 								link.next().prepend(li);
 								if (typeof opts.prependCurrentOnChildCallback == 'function') {
 									opts.prependCurrentOnChildCallback.apply(clone);
 								}
-								
+
 							}
 							link.append('<span class="' + css.icon + '"></span>');
+
 							link.click(function() {
-								var nextList = $(this).next();
-								var parentList = link.parents('ul:first');
-								var isFirstLevel = parentList.is(css.menuTopTest);
-								var parentLeft = (isFirstLevel) ? 0 : parseFloat(menu.css('left'));
-								var containerWidth = parseFloat(container.width());
-								var nextLeft = Math.round(parentLeft - containerWidth);
-								reset(parentList);
-								setCurrent(nextList);
-								menu.animate({left: nextLeft}, opts.showSpeed);
-								
-								if (currentTextHolder != false) {
-									currentTextHolder.text(link.text());
+								if ( $(window).width() <= opts.windowWidth) {
+									var nextList = $(this).next();
+									var parentList = link.parents('ul:first');
+									var isFirstLevel = parentList.is(css.menuTopTest);
+									var parentLeft = (isFirstLevel) ? 0 : parseFloat(menu.css('left'));
+									var containerWidth = parseFloat(container.width());
+									var nextLeft = Math.round(parentLeft - containerWidth);
+									reset(parentList);
+									setCurrent(nextList);
+									menu.animate({left: nextLeft}, opts.showSpeed);
+
+									if (currentTextHolder != false) {
+										currentTextHolder.text(link.text());
+									}
+									return false;
 								}
-								return false;
 							});
-						} 
+
+						}
 					});
+
+					$(window).resize(function(){
+						w = $(window).width();
+
+						if ( w > opts.windowWidth ) {
+							// Reset the height so the header doesn't screw up on resize.
+							ancestor.show();
+							container.css('height', 0);
+						} else {
+							container.css('height', $('.ap-ddmenu-current').css('height'));
+						}
+					});
+
 		    	} else {
 		    		// This element is being setup again. Make sure that the menu dimensions are correct
 		    		checkHeight($('ul.' + css.current, container));
 		    	}
+
 			}
 	    });
 	};
 	$.fn.apDrillDownMenu.defaults = {
+		windowWidth: 850, // Width that the navigation becomes "active"
 		width: '100%',
 		height: 'auto',
 		showSpeed: 200,

@@ -36,6 +36,7 @@
 					menu.data('apDrillDownMenuSetup', 'yes');
 					menu.addClass(css.menuTop).addClass(css.current);
 					menu.wrap('<div class="' + css.menuWrapper + '"></div>');
+
 					container = menu.parent();
 					container.css({width: opts.width, height: opts.height});
 
@@ -157,23 +158,34 @@
 						}
 					});
 
-					$(window).resize(function(){
+					$(window).on('resize', function(){
 						fixWidths();
 
 						if ( $(window).width() > opts.maxWindowWidth ){
-							ancestor.show();
 							container.css('height', 0);
-							menu.find('li').trigger('blur');
+							menu.show().find('li').trigger('blur');
 							$(css.menuTopTest).find('ul').attr('style', '');
+
+							// if ( $('.' + css.current).parent()[0].tagName.toLowerCase() != 'div' || !$('.' + css.current).parent().hasClass(css.menuTop) )
+							if (! $('.' + css.current).hasClass(css.menuTop) && $('.' + css.current).parent().hasClass(css.menuWrapper) )
+							{
+								$('.' + css.current).hide().parent().closest('.sub-menu').hide();
+							}
+
+							ancestor.show();
 						} else {
 							container.css('height', $('.' + css.current).css('height'));
-							$('.' + css.current).show().parentsUntil(css.menuTopTest).show();
+							if ( ancestor.hasClass('expanded')) $(css.menuTopTest).show();
+							if ( !$('.' + css.current).hasClass(css.menuTop) )
+							{
+								$('.' + css.current).show().parent().closest('.sub-menu').show();
+							}
 						}
 
 					});
 
 		    	} else {
-		    		// This element is being setup again. Make sure that the menu dimensions are correct
+		    		// This element is being set up again. Make sure that the menu dimensions are correct
 		    		checkHeight($('ul.' + css.current, container));
 		    	}
 

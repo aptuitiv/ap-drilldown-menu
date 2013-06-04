@@ -159,37 +159,44 @@
 					});
 
 					$(window).on('resize', function(){
-						fixWidths();
-
-						if ( $(window).width() > opts.maxWindowWidth ){
-							container.css('height', 0);
-							menu.show().find('li').trigger('blur');
-							$(css.menuTopTest).find('ul').attr('style', '');
-
-							// if ( $('.' + css.current).parent()[0].tagName.toLowerCase() != 'div' || !$('.' + css.current).parent().hasClass(css.menuTop) )
-							if (! $('.' + css.current).hasClass(css.menuTop) && $('.' + css.current).parent().hasClass(css.menuWrapper) )
-							{
-								$('.' + css.current).hide().parent().closest('.sub-menu').hide();
-							}
-
-							ancestor.show();
-						} else {
-							container.css('height', $('.' + css.current).css('height'));
-							if ( ancestor.hasClass('expanded')) $(css.menuTopTest).show();
-							if ( !$('.' + css.current).hasClass(css.menuTop) )
-							{
-								$('.' + css.current).show().parent().closest('.sub-menu').show();
-							}
-						}
-
-						$('.' + css.current).show().parent().closest('.sub-menu').show();
-
+						delay(function(){
+							reset()
+						}, 100);
 					});
 
 		    	} else {
 		    		// This element is being set up again. Make sure that the menu dimensions are correct
 		    		checkHeight($('ul.' + css.current, container));
 		    	}
+
+		    	var reset = function() {
+		    		fixWidths();
+
+		    		console.log('reset');
+
+		    		if ( $(window).width() > opts.maxWindowWidth ){
+		    			container.css('height', 0);
+		    			menu.show().find('li').trigger('blur');
+		    			$(css.menuTopTest).find('ul').attr('style', '');
+
+		    			// if ( $('.' + css.current).parent()[0].tagName.toLowerCase() != 'div' || !$('.' + css.current).parent().hasClass(css.menuTop) )
+		    			if (! $('.' + css.current).hasClass(css.menuTop) && $('.' + css.current).parent().hasClass(css.menuWrapper) )
+		    			{
+		    				$('.' + css.current).hide().parent().closest('.sub-menu').hide();
+		    			}
+
+		    			ancestor.show();
+		    		} else {
+		    			container.css('height', $('.' + css.current).css('height'));
+		    			if ( ancestor.hasClass('expanded')) $(css.menuTopTest).show();
+		    			if ( !$('.' + css.current).hasClass(css.menuTop) )
+		    			{
+		    				$('.' + css.current).show().parent().closest('.sub-menu').show();
+		    			}
+		    		}
+
+		    		$('.' + css.current).show().parent().closest('.sub-menu').show();
+		    	};
 
 			}
 	    });
@@ -207,4 +214,15 @@
 		prependCurrentOnChild: true,
 		prependCurrentOnChildCallback: function() {}
 	};
+
+	// Setting up a timeout function for the resize event.
+	var delay = (function(){
+	  var timer = 0;
+	  return function(callback, ms){
+	    clearTimeout(timer);
+	    timer = setTimeout(callback, ms);
+	  };
+
+	})();
+
 })(jQuery);

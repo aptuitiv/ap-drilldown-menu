@@ -175,14 +175,11 @@
 							ancestor.show();
 						} else {
 							container.css('height', $('.' + css.current).css('height'));
-<<<<<<< HEAD
 							if ( ancestor.hasClass('expanded')) $(css.menuTopTest).show();
 							if ( !$('.' + css.current).hasClass(css.menuTop) )
 							{
 								$('.' + css.current).show().parent().closest('.sub-menu').show();
 							}
-=======
->>>>>>> 23055643ddf456e1e6a15d63af1b082446d73991
 						}
 
 						$('.' + css.current).show().parent().closest('.sub-menu').show();

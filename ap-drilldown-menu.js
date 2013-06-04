@@ -160,8 +160,10 @@
 
 					$(window).on('resize', function(){
 						delay(function(){
-							reset()
+							showOrHide();
 						}, 100);
+
+						fixWidths();
 					});
 
 		    	} else {
@@ -169,40 +171,34 @@
 		    		checkHeight($('ul.' + css.current, container));
 		    	}
 
-		    	var reset = function() {
-		    		fixWidths();
-
-		    		console.log('reset');
-
+		    	var showOrHide = function() {
 		    		if ( $(window).width() > opts.maxWindowWidth ){
 		    			container.css('height', 0);
-		    			menu.show().find('li').trigger('blur');
+
 		    			$(css.menuTopTest).find('ul').attr('style', '');
 
-		    			// if ( $('.' + css.current).parent()[0].tagName.toLowerCase() != 'div' || !$('.' + css.current).parent().hasClass(css.menuTop) )
-		    			if (! $('.' + css.current).hasClass(css.menuTop) && $('.' + css.current).parent().hasClass(css.menuWrapper) )
-		    			{
+		    			if (! $('.' + css.current).hasClass(css.menuTop) && $('.' + css.current).parent().hasClass(css.menuWrapper) ) {
 		    				$('.' + css.current).hide().parent().closest('.sub-menu').hide();
 		    			}
 
-		    			ancestor.show();
+		    			ancestor.attr('style', '');
 		    		} else {
 		    			container.css('height', $('.' + css.current).css('height'));
-		    			if ( ancestor.hasClass('expanded')) $(css.menuTopTest).show();
-		    			if ( !$('.' + css.current).hasClass(css.menuTop) )
-		    			{
+		    			if ( ancestor.hasClass('expanded')) ancestor.show();
+
+		    			if ( !$('.' + css.current).hasClass(css.menuTop) ) {
 		    				$('.' + css.current).show().parent().closest('.sub-menu').show();
 		    			}
+
+		    			$('.' + css.current).show().parent().closest('.sub-menu').show();
 		    		}
-
-		    		$('.' + css.current).show().parent().closest('.sub-menu').show();
 		    	};
-
 			}
 	    });
 	};
+
 	$.fn.apDrillDownMenu.defaults = {
-		maxWindowWidth: 850, // Width that the navigation becomes "active"
+		maxWindowWidth: 875, // Width that the navigation becomes "active"
 		width: '100%',
 		height: 'auto',
 		showSpeed: 200,

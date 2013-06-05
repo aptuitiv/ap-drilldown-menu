@@ -54,7 +54,7 @@
 
 					// Handle the back link if it's setup
 					var backLink = false;
-					if (opts.backLink == true && opts.backLinkSelector != undefined) {
+					if (opts.backLink == true && opts.backLinkSelector != undefined && $(opts.backLinkSelector).length > 0) {
 						backLink = $(opts.backLinkSelector).hide();
 						backLink.click(function() {
 							var b = $(this);
@@ -71,6 +71,9 @@
 				    		});
 				    		return false;
 						});
+					} else {
+						// The link isn't set up - creating it now.
+						container.prepend('<a class="'+ opts.backLinkSelector.substr(1, opts.backLinkSelector.length - 1) + '">' + opts.backLinkText + '</a>');
 					}
 
 					// Setup the current text placeholder if necessary
@@ -214,7 +217,8 @@
 		height: 'auto',
 		showSpeed: 200,
 		backLink: true,
-		backLinkSelector: 'a.ap-ddmenu-back',
+		backLinkText: 'Back',
+		backLinkSelector: '.ap-ddmenu-back',
 		currentText: true,
 		currentTextSelector: '.ap-ddmenu-current-text',
 		cloneClass: 'clone',

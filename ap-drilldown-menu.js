@@ -1,4 +1,4 @@
-(function($) {
+;(function($, window, undefined) {
 	$.fn.apDrillDownMenu = function(options) {
 		var opts = $.extend({}, $.fn.apDrillDownMenu.defaults, options);
 		opts.showSpeed = parseInt(opts.showSpeed);
@@ -16,12 +16,15 @@
 	    	if (this.tagName.toLowerCase() == 'ul') {
 
 				var menu = $(this);
-				var p = menu.parent();
+				var p = menu.parent(), container = menu.parent();
 				var ancestor, container;
 
 				// Handling the sliding/hiding of the navigation via the toggle.
 				$(opts.toggleSwitch).on('click', function (e) {
 					e.preventDefault();
+
+					// Fixing the menu widths when the toggle is clicked.
+					fixWidths();
 
 					p.stop().slideToggle({'duration' : opts.toggleSpeed});
 					checkHeight(menu);
@@ -35,6 +38,7 @@
 		    			if (parseInt(el.css('height')) > maxHeight) el.addClass(css.scroll);
 		    			el.css('height', maxHeight);
 		    		} else {
+		    			console.log(container.attr('class'));
 		    			container.css('height', el.height());
 		    		}
 	    		};
@@ -56,25 +60,27 @@
 					var backLink = false;
 					if (opts.backLink == true && opts.backLinkSelector != undefined && $(opts.backLinkSelector).length > 0) {
 						backLink = $(opts.backLinkSelector).hide();
-						backLink.click(function() {
-							var b = $(this);
-				    		var prevLeftVal = parseFloat(menu.css('left')) + container.width();
-				    		menu.animate({ left: prevLeftVal },  opts.showSpeed, function(){
-				    			var current = $('ul.' + css.current, menu);
-				    			current.hide();
-				    			var currentParent = current.parents('ul:first');
-				    			reset(current);
-				    			setCurrent(currentParent);
-				    			if (currentTextHolder != false && currentParent.is(css.menuTopTest) == false) {
-				    				currentTextHolder.text(currentParent.prev().text());
-				    			}
-				    		});
-				    		return false;
-						});
 					} else {
-						// The link isn't set up - creating it now.
-						container.prepend('<a class="'+ opts.backLinkSelector.substr(1, opts.backLinkSelector.length - 1) + '">' + opts.backLinkText + '</a>');
+						// The link hasn't been set up, so we create it here.
+						container.prepend('<a href="#" class="'+ opts.backLinkSelector.substr(1, opts.backLinkSelector.length - 1) + '">' + opts.backLinkText + '</a>');
+						backLink = $(opts.backLinkSelector).hide();
 					}
+
+					backLink.click(function() {
+						var b = $(this);
+			    		var prevLeftVal = parseFloat(menu.css('left')) + container.width();
+			    		menu.animate({ left: prevLeftVal },  opts.showSpeed, function(){
+			    			var current = $('ul.' + css.current, menu);
+			    			current.hide();
+			    			var currentParent = current.parents('ul:first');
+			    			reset(current);
+			    			setCurrent(currentParent);
+			    			if (currentTextHolder != false && currentParent.is(css.menuTopTest) == false) {
+			    				currentTextHolder.text(currentParent.prev().text());
+			    			}
+			    		});
+			    		return false;
+					});
 
 					// Setup the current text placeholder if necessary
 					var currentTextHolder = false;
@@ -92,31 +98,31 @@
 		    		// Handles setting up the current ul
 					var setCurrent = function (el) {
 						var isTop = el.is(css.menuTopTest);
+
 						if (!isTop) {
 							el.css('left', container.width());
 						}
+
 		    			el.show().addClass(css.current);
 		    			checkHeight(el);
+
 		    			if (backLink != false) {
-		    				if (!isTop) {
-		    					backLink.show();
-		    				} else {
-		    					backLink.hide();
-		    				}
+		    				(!isTop) ? backLink.show() : backLink.hide();
 		    			}
+
 		    			if (currentTextHolder != false) {
-		    				if (!isTop) {
-		    					currentTextHolder.show();
-		    				} else {
-		    					currentTextHolder.hide();
-		    				}
+		    				(!isTop) ? currentTextHolder.show() : currentTextHolder.hide();
 		    			}
 		    		};
 		    		// Fixes the widths and positions when the device is rotated or the window is resized
 		    		var fixWidths = function() {
 		    			var current = $('.' + css.current, menu);
 		    			var numParents = current.parentsUntil('.' + css.menuWrapper, 'ul').length;
-		    			var width = parseInt(container.css('width'));
+		    			// var width = parseInt(container.css('width'));
+
+		    			// Getting the window width to set the widths.
+		    			// .css() can't be called on a hidden element.
+		    			var width = $(window).width();
 		    			if (numParents > 0) {
 		    				menu.css('left', (numParents * width * -1));
 		    				current.parentsUntil('.' + css.menuTop, 'ul').css('left', width);
@@ -238,4 +244,4 @@
 
 	})();
 
-})(jQuery);
+})(jQuery, window);

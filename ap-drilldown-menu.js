@@ -13,27 +13,29 @@
 		css.menuTopTest = '.' + css.menuTop;
 	    return this.each(function() {
 
-	    	// Handling the sliding/hiding of the navigation via the toggle.
-	    	opts.toggleSwitch.on('click', function (e) {
-	    		e.preventDefault();
-
-	    		$(this).stop().slideToggle(opts.toggleSpeed);
-	    	});
-
 	    	if (this.tagName.toLowerCase() == 'ul') {
+
 				var menu = $(this);
-				var container = menu.parent();
-				var ancestor;
+				var p = menu.parent();
+				var ancestor, container;
+
+				// Handling the sliding/hiding of the navigation via the toggle.
+				$(opts.toggleSwitch).on('click', function (e) {
+					e.preventDefault();
+
+					p.stop().slideToggle({'duration' : opts.toggleSpeed});
+					checkHeight(menu);
+				});
 
 				var w = $(window).width();
 
 				// Checks the height of the element against the max height
 				var checkHeight = function(el) {
 	    			if (maxHeight > 0) {
-		    			if (el.height() > maxHeight) {el.addClass(css.scroll);}
-		    			el.height(maxHeight);
+		    			if (parseInt(el.css('height')) > maxHeight) el.addClass(css.scroll);
+		    			el.css('height', maxHeight);
 		    		} else {
-		    			container.height(el.height());
+		    			container.css('height', el.height());
 		    		}
 	    		};
 
@@ -76,12 +78,14 @@
 					if (opts.currentText) {
 						currentTextHolder = $(opts.currentTextSelector);
 					}
+
 					// Set internal functions. Set here so that local variables are available
 
 		    		// Resets the old current ul
 		    		var reset = function (el) {
 		    			el.removeClass(css.scroll).removeClass(css.current);
 		    		};
+
 		    		// Handles setting up the current ul
 					var setCurrent = function (el) {
 						var isTop = el.is(css.menuTopTest);

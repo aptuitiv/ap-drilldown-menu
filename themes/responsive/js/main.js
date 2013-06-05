@@ -5,18 +5,18 @@
 			placeWindowWidth('#width-tracker');
 		});
 
-		$('#nav-button').on('click', function(e){
+		// $('#nav-button').on('click', function(e){
 
-			e.preventDefault();
+		// 	e.preventDefault();
 
-			if ( !$('.navigation').is(':animated') ) {
-				$('.navigation').slideToggle('fast', function(){
-					var el = $(this);
-					el.toggleClass('expanded');
-					if (el.hasClass('expanded')) $('.navigation ul:first').apDrillDownMenu();
-				});
-			}
-		});
+		// 	if ( !$('.navigation').is(':animated') ) {
+		// 		$('.navigation').slideToggle('fast', function(){
+		// 			var el = $(this);
+		// 			el.toggleClass('expanded');
+		// 			if (el.hasClass('expanded')) $('.navigation ul:first').apDrillDownMenu();
+		// 		});
+		// 	}
+		// });
 
 		$('.navigation ul:first').apDrillDownMenu();
 

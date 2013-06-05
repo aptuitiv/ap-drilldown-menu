@@ -56,15 +56,13 @@
 					// Getting the parent of the new container.
 					ancestor = container.parent();
 
-					// Handle the back link if it's setup
-					var backLink = false;
-					if (opts.backLink == true && opts.backLinkSelector != undefined && $(opts.backLinkSelector).length > 0) {
-						backLink = $(opts.backLinkSelector).hide();
-					} else {
-						// The link hasn't been set up, so we create it here.
+					// Create the back link if it doesn't already exist in the DOM.
+					if ( !(opts.backLink == true && opts.backLinkSelector != undefined && $(opts.backLinkSelector).length > 0) )  {
 						container.prepend('<a href="#" class="'+ opts.backLinkSelector.substr(1, opts.backLinkSelector.length - 1) + '">' + opts.backLinkText + '</a>');
-						backLink = $(opts.backLinkSelector).hide();
 					}
+
+					var backLink = $(opts.backLinkSelector);
+					backLink.hide();
 
 					backLink.click(function() {
 						var b = $(this);

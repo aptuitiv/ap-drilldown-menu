@@ -13,6 +13,13 @@
 		css.menuTopTest = '.' + css.menuTop;
 	    return this.each(function() {
 
+	    	// Handling the sliding/hiding of the navigation via the toggle.
+	    	opts.toggleSwitch.on('click', function (e) {
+	    		e.preventDefault();
+
+	    		$(this).stop().slideToggle(opts.toggleSpeed);
+	    	});
+
 	    	if (this.tagName.toLowerCase() == 'ul') {
 				var menu = $(this);
 				var container = menu.parent();
@@ -208,7 +215,9 @@
 		currentTextSelector: '.ap-ddmenu-current-text',
 		cloneClass: 'clone',
 		prependCurrentOnChild: true,
-		prependCurrentOnChildCallback: function() {}
+		prependCurrentOnChildCallback: function() {},
+		toggleSwitch: '.ap-ddmenu-toggle',
+		toggleSpeed: 200
 	};
 
 	// Setting up a timeout function for the resize event.

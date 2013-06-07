@@ -54,9 +54,13 @@
 					// Getting the parent of the new container.
 					ancestor = container.parent();
 
+					if ( !$(opts.headerSelector).length ) {
+						container.prepend('<div class="' + opts.headerSelector.split('.')[1] + '"></div>' )
+					}
+
 					// Create the back link if it doesn't already exist in the DOM.
 					if ( !(opts.backLink == true && opts.backLinkSelector != undefined && $(opts.backLinkSelector).length > 0) )  {
-						container.prepend('<a href="#" class="'+ opts.backLinkSelector.substr(1, opts.backLinkSelector.length - 1) + '">' + opts.backLinkText + '</a>');
+						$(opts.headerSelector).prepend('<a href="#" class="'+ opts.backLinkSelector.substr(1, opts.backLinkSelector.length - 1) + '">' + opts.backLinkText + '</a>');
 					}
 
 					var backLink = $(opts.backLinkSelector);

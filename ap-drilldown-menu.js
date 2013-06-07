@@ -20,7 +20,7 @@
 				var ancestor, container;
 
 				// Handling the sliding/hiding of the navigation via the toggle.
-				$(opts.toggleSwitch).on('click', function (e) {
+				$(opts.toggleSwitch).on('click touchstart', function (e) {
 					e.preventDefault();
 
 					// Fixing the menu widths when the toggle is clicked.

@@ -30,8 +30,6 @@
 					checkHeight(menu);
 				});
 
-				var w = $(window).width();
-
 				// Checks the height of the element against the max height
 				var checkHeight = function(el) {
 	    			if (maxHeight > 0) {
@@ -223,6 +221,7 @@
 		backLink: true,
 		backLinkText: 'Back',
 		backLinkSelector: '.ap-ddmenu-back',
+		headerSelector: '.ap-ddmenu-header',
 		currentText: true,
 		currentTextSelector: '.ap-ddmenu-current-text',
 		cloneClass: 'clone',

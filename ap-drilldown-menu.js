@@ -36,7 +36,6 @@
 		    			if (parseInt(el.css('height')) > maxHeight) el.addClass(css.scroll);
 		    			el.css('height', maxHeight);
 		    		} else {
-		    			console.log(container.attr('class'));
 		    			container.css('height', el.height());
 		    		}
 	    		};
@@ -54,16 +53,32 @@
 					// Getting the parent of the new container.
 					ancestor = container.parent();
 
+					// Creating the header if it doesn't exist.
 					if ( !$(opts.headerSelector).length ) {
-						container.prepend('<div class="' + opts.headerSelector.split('.')[1] + '"></div>' )
+					    container.prepend('<div class="' + opts.headerSelector.split('.')[1] + '"></div>' )
 					}
 
-					// Create the back link if it doesn't already exist in the DOM.
+					var ddmenuHeader = $(opts.headerSelector);
+
+					// Setup the current text placeholder if necessary
+					var currentTextHolder = false;
+
+					if (opts.currentText) {
+					    // If the current text holder is needed but doesn't exist, create it now.
+					    if ( !$(opts.currentTextSelector).length ) {
+					        ddmenuHeader.prepend('<div class="' + opts.currentTextSelector.split('.')[1] + '"></div>');
+					    }
+
+					    currentTextHolder = $(opts.currentTextSelector);
+					}
+
+					// Create the back link if it doesn't exist.
 					if ( !(opts.backLink == true && opts.backLinkSelector != undefined && $(opts.backLinkSelector).length > 0) )  {
-						$(opts.headerSelector).prepend('<a href="#" class="'+ opts.backLinkSelector.substr(1, opts.backLinkSelector.length - 1) + '">' + opts.backLinkText + '</a>');
+					    ddmenuHeader.prepend('<a href="#" class="' + opts.backLinkSelector.split('.')[1] + '">' + opts.backLinkText + '</a>');
 					}
 
 					var backLink = $(opts.backLinkSelector);
+
 					backLink.hide();
 
 					backLink.click(function() {

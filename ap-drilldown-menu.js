@@ -165,7 +165,7 @@
 								}
 
 							}
-							link.append('<span class="' + css.icon + '"></span>');
+							link.append('<span class="' + css.icon + '">' + opts.parentIconText + '</span>');
 
 							link.click(function() {
 								// Checking window width - need to know whether to make the click event scroll down the menus or not.
@@ -243,6 +243,7 @@
 		cloneClass: 'clone',
 		prependCurrentOnChild: true,
 		prependCurrentOnChildCallback: function() {},
+		parentIconText: '',
 		toggleSwitch: '.ap-ddmenu-toggle',
 		toggleSpeed: 200
 	};

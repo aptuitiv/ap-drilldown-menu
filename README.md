@@ -1,5 +1,4 @@
 # AP Drilldown Menu
-=================
 
 Javascript based navigation menu for mobile and responsive layouts
 

@@ -32,15 +32,12 @@
 
 				// Checks the height of the element against the max height
 				var checkHeight = function(el) {
-	    			if (maxHeight > 0) {
-		    			if (parseInt(el.css('height')) > maxHeight) el.addClass(css.scroll);
-		    			el.css('height', maxHeight);
-		    		} else {
-		    			container.css('height', el.height());
-		    		}
-	    		};
+                    if (maxHeight > 0) {
+                        (parseInt(el.css('height')) > maxHeight) ? el.addClass(css.scroll).css('height', maxHeight) : container.css('height', el.css('height'));
+                    }
+                };
 
-	    		var setup = menu.data('apDrillDownMenuSetup');
+                var setup = menu.data('apDrillDownMenuSetup');
 
 				if (setup != 'yes') {
 					menu.data('apDrillDownMenuSetup', 'yes');
@@ -55,7 +52,7 @@
 
 					// Creating the header if it doesn't exist.
 					if ( !$(opts.headerSelector).length ) {
-					    container.prepend('<div class="' + opts.headerSelector.split('.')[1] + '"></div>' )
+                        container.prepend('<div class="' + opts.headerSelector.split('.')[1] + '"></div>' );
 					}
 
 					var ddmenuHeader = $(opts.headerSelector);

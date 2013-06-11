@@ -1,4 +1,4 @@
-ap-drilldown-menu
+# AP Drilldown Menu
 =================
 
 Javascript based navigation menu for mobile and responsive layouts
@@ -9,8 +9,7 @@ Using the plugin is simple. Call it on the top level of your navigation, like so
 
     $('ul.navigation').apDrillDownMenu();
 
-
-That's it. There is a set of options that can be passed to this method.
+That's it! There is a set of options that can be passed to this method.
 
     maxWindowWidth: 875, // Width that the navigation becomes "active"
     width: '100%',
@@ -24,6 +23,7 @@ That's it. There is a set of options that can be passed to this method.
     cloneClass: 'clone',
     prependCurrentOnChild: true,
     prependCurrentOnChildCallback: function() {},
+    parentIconText: '',
     toggleSwitch: '.ap-ddmenu-toggle',
     toggleSpeed: 200
 

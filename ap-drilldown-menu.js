@@ -20,6 +20,21 @@
             scroll: 'ap-ddmenu-scroll'
         };
 
+        // Showing and hiding the toggle switch via JS for IE8.
+        if (!mq) {
+            var p = $(this).parents().eq(0);
+
+            $(window).on('load resize', function(){
+                if ($(window).width() > opts.maxWindowWidth){
+                    $(opts.toggleSwitch).hide();
+                    p.show();
+                } else {
+                    $(opts.toggleSwitch).show();
+                    p.hide();
+                }
+            });
+        }
+
         css.menuTopTest = '.' + css.menuTop;
         return this.each(function() {
 

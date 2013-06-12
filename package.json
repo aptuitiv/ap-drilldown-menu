@@ -1,0 +1,33 @@
+{
+  "name": "ap_drilldown_plugin",
+  "version": "0.1.0",
+  "description": "Javascript based navigation menu for mobile and responsive layouts",
+  "main": "ap-drilldown-menu.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aptuitiv/ap-drilldown-menu.git"
+  },
+  "keywords": [
+    "responsive",
+    "javascript",
+    "jquery",
+    "menu",
+    "mobile"
+  ],
+  "author": "Aptuitiv",
+  "license": "BSD",
+  "readmeFilename": "README.md",
+  "gitHead": "bd10fa5199c612853ec1179ec5e829c8e9b6234d",
+  "bugs": {
+    "url": "https://github.com/aptuitiv/ap-drilldown-menu/issues"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1"
+  }
+}

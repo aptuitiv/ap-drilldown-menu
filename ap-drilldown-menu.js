@@ -26,11 +26,9 @@
                 if ($(window).width() > opts.maxWindowWidth){
                     $('html').removeClass(opts.ieMobileClass);
                     $(opts.toggleSwitch).hide();
-                    // p.show();
                 } else {
                     $('html').addClass(opts.ieMobileClass);
                     $(opts.toggleSwitch).show();
-                    // p.hide();
                 }
             });
         }

@@ -27,14 +27,16 @@
 					fixWidths();
 
 					p.stop().slideToggle({'duration' : opts.toggleSpeed});
-					checkHeight(menu);
+					checkHeight($('.' + css.current));
 				});
 
 				// Checks the height of the element against the max height
 				var checkHeight = function(el) {
-                    if (maxHeight > 0) {
-                        (parseInt(el.css('height')) > maxHeight) ? el.addClass(css.scroll).css('height', maxHeight) : container.css('height', el.css('height'));
-                    }
+					if (maxHeight > 0) {
+						if (parseInt(el.css('height')) > maxHeight) el.addClass(css.scroll).css('height', maxHeight)
+					} else {
+						container.css('height', el.outerHeight() + $(opts.headerSelector).outerHeight());
+					}
                 };
 
                 var setup = menu.data('apDrillDownMenuSetup');

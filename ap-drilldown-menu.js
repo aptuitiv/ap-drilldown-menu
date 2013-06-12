@@ -24,9 +24,11 @@
 
             $(window).on('load resize', function(){
                 if ($(window).width() > opts.maxWindowWidth){
+                    $('body').addClass(opts.ieMobileClass);
                     $(opts.toggleSwitch).hide();
                     p.show();
                 } else {
+                    $('body').removeClass(opts.ieMobileClass);
                     $(opts.toggleSwitch).show();
                     p.hide();
                 }
@@ -269,6 +271,7 @@
 
     $.fn.apDrillDownMenu.defaults = {
         maxWindowWidth: 875, // Width that the navigation becomes "active"
+        ieMobileClass: 'mobile',
         width: '100%',
         height: 'auto',
         showSpeed: 200,

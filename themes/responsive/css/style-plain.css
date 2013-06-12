@@ -7,7 +7,7 @@ blockquote:before,blockquote:after,q:before,q:after{content:none}
 table{border-collapse:collapse;border-spacing:0}
 
 .container {max-width: 1100px;width: auto;margin: 0 auto;padding: 0 20px;}
-.col1,.col2,.col3,.col4,.col5,.col6,.col7,.col8,.col9,.col10,.col11{float:left;margin-right:3.2786885%;min-height:1px;position:relative}
+/*.col1,.col2,.col3,.col4,.col5,.col6,.col7,.col8,.col9,.col10,.col11{float:left;margin-right:3.2786885%;min-height:1px;position:relative}
 .col1 {width:5.3278689%}
 .col2 {width:13.9344262%}
 .col3 {width:22.5409836%}
@@ -32,7 +32,7 @@ table{border-collapse:collapse;border-spacing:0}
 @media only screen and ( max-width : 767px ){
     .col1,.col2,.col3,.col4,.col5,.col6,.col7,.col8,.col9,.col10,.col11 {width: 100%;display: block;clear: both;float: none;}
     .mar1-left, .mar2-left, .mar3-left, .mar4-left {margin-left: 0;}
-}
+}*/
 
 body {font-family: 'helvetica-neue', helvetica, arial, sans-serif;font-weight: 400;}
 
@@ -43,31 +43,6 @@ html[xmlns] .clearfix{display:block}
 
 a {text-decoration: none;}
 
-#header {
-    position:relative;
-    width:100%;
-    font-weight: 200;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    outline:none;
-    background-color:#FFF;
-    -webkit-box-shadow:0 3px 4px #b9b9b9;
-    -moz-box-shadow:0 3px 4px #b9b9b9;
-    box-shadow:0 2px 5px rgba(0,0,0,0.15);
-    background-color:#025b89;
-    background-image: linear-gradient(bottom, #005179 0%, #026190 100%);
-    background-image: -o-linear-gradient(bottom, #005179 0%, #026190 100%);
-    background-image: -moz-linear-gradient(bottom, #005179 0%, #026190 100%);
-    background-image: -webkit-linear-gradient(bottom, #005179 0%, #026190 100%);
-    background-image: -ms-linear-gradient(bottom, #005179 0%, #026190 100%);
-    z-index: 15;
-}
-
-#header .header-inner {max-width: 1100px;margin: 0 auto;padding: 0 15px;}
 #width-tracker {position: absolute;right: 0;bottom: 0;font-weight: 700;padding:10px;transition-property: all;transition-duration: 100ms}
 #width-tracker:hover {background: rgba(0,0,0,0.1);box-shadow: 0 0 10px 1px rgba(0,0,0,0.3);}
 #width-tracker span {font-size: 150%;}
@@ -98,7 +73,6 @@ a {text-decoration: none;}
     width:40px;
 }
 
-.navigation a {color: #000;}
 .navigation {float: right;}
 .navigation .menu {display: block;position: relative;}
 .navigation .menu li {position: relative;display: block;float: left;}
@@ -108,8 +82,6 @@ a {text-decoration: none;}
 .navigation .menu li .submenu li {float: none;clear: both;font-size: 75%;font-weight: bold;text-transform: uppercase;}
 .navigation .menu li .submenu a {display: block;padding: 3px;position: relative;color:#000;}
 
-
-/* Hiding the third level nav in desktop mode - just because */
 .navigation .menu > li:hover > .submenu {display: block;}
 .navigation .menu li .submenu {display: none;}
 
@@ -135,3 +107,18 @@ a {text-decoration: none;}
     .ap-ddmenu-header .ap-ddmenu-current-text {text-align: center;color: #fff;font-weight: 400;padding:10px 0;}
     .ap-ddmenu-header .ap-ddmenu-back {position: absolute;left: 12px;top: 11px;font-size: 87.5%;font-weight: 700;color: #fff;}
 }
+
+/* Styling for IE mobile nav */
+
+.mobile .navigation .menu li:hover > .submenu {display: none;}
+.mobile .navigation {display: none;clear: both;}
+.mobile .navigation .menu, .mobile #nav-button {display: block;background: #000;}
+.mobile .navigation, .mobile .navigation .menu li {float: none;position: static;}
+.mobile .navigation .menu li > a, .mobile .navigation .menu li > .submenu > li > a {display: block;padding: 10px}
+.mobile .navigation .menu li a, .mobile .navigation .menu li .submenu a {border-bottom:1px solid rgb(0, 71, 111);}
+.mobile .navigation .menu li > .submenu {position: relative;left: auto;top: auto;bottom: auto;background: none;font-size: inherit;box-shadow: none;min-width: 0;position: absolute;width: 100%;top: 0}
+.mobile .navigation .menu li > .submenu li {float: none;clear: both;font-size: inherit;font-weight: 400;text-transform: none;}
+.mobile .navigation .menu li:last-child a {border-bottom: 0 none;}
+.mobile .ap-ddmenu-header {display: block;position: relative;background: #333;box-shadow: 0 1px 5px 0 rgba(0,0,0,0.5) inset;height: 35px}
+.mobile .ap-ddmenu-header .ap-ddmenu-current-text {text-align: center;color: #fff;font-weight: 400;padding:10px 0;}
+.mobile .ap-ddmenu-header .ap-ddmenu-back {position: absolute;left: 12px;top: 11px;font-size: 87.5%;font-weight: 700;color: #fff;}.mobile

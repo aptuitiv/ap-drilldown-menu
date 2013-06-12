@@ -26,11 +26,11 @@
                 if ($(window).width() > opts.maxWindowWidth){
                     $('html').removeClass(opts.ieMobileClass);
                     $(opts.toggleSwitch).hide();
-                    p.show();
+                    // p.show();
                 } else {
                     $('html').addClass(opts.ieMobileClass);
                     $(opts.toggleSwitch).show();
-                    p.hide();
+                    // p.hide();
                 }
             });
         }
@@ -51,7 +51,11 @@
                     // Fixing the menu widths when the toggle is clicked.
                     fixWidths();
 
-                    p.stop().slideToggle({'duration' : opts.toggleSpeed});
+                    if (!mq) {
+                        p.toggle();
+                    } else {
+                        p.stop().slideToggle({'duration' : opts.toggleSpeed});
+                    }
                     checkHeight($('.' + css.current));
                 });
 

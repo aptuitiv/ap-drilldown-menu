@@ -24,11 +24,11 @@
 
             $(window).on('load resize', function(){
                 if ($(window).width() > opts.maxWindowWidth){
-                    $('body').addClass(opts.ieMobileClass);
+                    $('html').removeClass(opts.ieMobileClass);
                     $(opts.toggleSwitch).hide();
                     p.show();
                 } else {
-                    $('body').removeClass(opts.ieMobileClass);
+                    $('html').addClass(opts.ieMobileClass);
                     $(opts.toggleSwitch).show();
                     p.hide();
                 }

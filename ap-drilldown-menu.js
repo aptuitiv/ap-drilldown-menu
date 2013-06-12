@@ -128,6 +128,16 @@
 		    				(!isTop) ? currentTextHolder.show() : currentTextHolder.hide();
 		    			}
 		    		};
+
+		    		// Setting up a timeout function for the resize event.
+		    		var delay = (function(){
+						var timer = 0;
+						return function(callback, ms){
+							clearTimeout(timer);
+							timer = setTimeout(callback, ms);
+						};
+		    		})();
+
 		    		// Fixes the widths and positions when the device is rotated or the window is resized
 		    		var fixWidths = function() {
 		    			var current = $('.' + css.current, menu);
@@ -249,15 +259,5 @@
 		toggleSwitch: '.ap-ddmenu-toggle',
 		toggleSpeed: 200
 	};
-
-	// Setting up a timeout function for the resize event.
-	var delay = (function(){
-	  var timer = 0;
-	  return function(callback, ms){
-	    clearTimeout(timer);
-	    timer = setTimeout(callback, ms);
-	  };
-
-	})();
 
 })(jQuery, window);

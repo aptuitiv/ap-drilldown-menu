@@ -5,6 +5,8 @@
      */
     ;window.Modernizr=function(a,b,c){function v(a){i.cssText=a}function w(a,b){return v(prefixes.join(a+";")+(b||""))}function x(a,b){return typeof a===b}function y(a,b){return!!~(""+a).indexOf(b)}function z(a,b,d){for(var e in a){var f=b[a[e]];if(f!==c)return d===!1?a[e]:x(f,"function")?f.bind(d||b):f}return!1}var d="2.6.2",e={},f=b.documentElement,g="modernizr",h=b.createElement(g),i=h.style,j,k={}.toString,l={},m={},n={},o=[],p=o.slice,q,r=function(a,c,d,e){var h,i,j,k,l=b.createElement("div"),m=b.body,n=m||b.createElement("body");if(parseInt(d,10))while(d--)j=b.createElement("div"),j.id=e?e[d]:g+(d+1),l.appendChild(j);return h=["&#173;",'<style id="s',g,'">',a,"</style>"].join(""),l.id=g,(m?l:n).innerHTML+=h,n.appendChild(l),m||(n.style.background="",n.style.overflow="hidden",k=f.style.overflow,f.style.overflow="hidden",f.appendChild(n)),i=c(l,a),m?l.parentNode.removeChild(l):(n.parentNode.removeChild(n),f.style.overflow=k),!!i},s=function(b){var c=a.matchMedia||a.msMatchMedia;if(c)return c(b).matches;var d;return r("@media "+b+" { #"+g+" { position: absolute; } }",function(b){d=(a.getComputedStyle?getComputedStyle(b,null):b.currentStyle)["position"]=="absolute"}),d},t={}.hasOwnProperty,u;!x(t,"undefined")&&!x(t.call,"undefined")?u=function(a,b){return t.call(a,b)}:u=function(a,b){return b in a&&x(a.constructor.prototype[b],"undefined")},Function.prototype.bind||(Function.prototype.bind=function(b){var c=this;if(typeof c!="function")throw new TypeError;var d=p.call(arguments,1),e=function(){if(this instanceof e){var a=function(){};a.prototype=c.prototype;var f=new a,g=c.apply(f,d.concat(p.call(arguments)));return Object(g)===g?g:f}return c.apply(b,d.concat(p.call(arguments)))};return e});for(var A in l)u(l,A)&&(q=A.toLowerCase(),e[q]=l[A](),o.push((e[q]?"":"no-")+q));return e.addTest=function(a,b){if(typeof a=="object")for(var d in a)u(a,d)&&e.addTest(d,a[d]);else{a=a.toLowerCase();if(e[a]!==c)return e;b=typeof b=="function"?b():b,typeof enableClasses!="undefined"&&enableClasses&&(f.className+=" "+(b?"":"no-")+a),e[a]=b}return e},v(""),h=j=null,e._version=d,e.mq=s,e.testStyles=r,e}(this,this.document);
 
+    var mq = Modernizr.mq('only all');
+
     $.fn.apDrillDownMenu = function(options) {
 
         var opts = $.extend({}, $.fn.apDrillDownMenu.defaults, options);
@@ -25,7 +27,7 @@
 
                 var menu = $(this);
                 var p = menu.parent(), container = menu.parent();
-                var ancestor, container;
+                var ancestor;
 
                 // Handling the sliding/hiding of the navigation via the toggle.
                 $(opts.toggleSwitch).on('click touchstart', function (e) {
@@ -41,7 +43,7 @@
                 // Checks the height of the element against the max height
                 var checkHeight = function(el) {
                     if (maxHeight > 0) {
-                        if (parseInt(el.css('height')) > maxHeight) el.addClass(css.scroll).css('height', maxHeight)
+                        if (parseInt(el.css('height')) > maxHeight) el.addClass(css.scroll).css('height', maxHeight);
                     } else {
                         container.css('height', el.outerHeight() + $(opts.headerSelector).outerHeight());
                     }
@@ -122,11 +124,11 @@
                         el.show().addClass(css.current);
                         checkHeight(el);
 
-                        if (backLink != false) {
+                        if (backLink !== false) {
                             (!isTop) ? backLink.show() : backLink.hide();
                         }
 
-                        if (currentTextHolder != false) {
+                        if (currentTextHolder !== false) {
                             (!isTop) ? currentTextHolder.show() : currentTextHolder.hide();
                         }
                     };
@@ -154,10 +156,19 @@
                             current.parentsUntil('.' + css.menuTop, 'ul').css('left', width);
                             current.css('left', width);
                         }
+                    };
+
+                    /**
+                     * Add listeners to fix the widths when the device is rotated or the window is resized
+                     */
+
+                    // IE8- doesn't support addEventListener - use attachEvent instead.
+                    if (!window.addEventListener) {
+                        window.attachEvent('resize', fixWidths);
+                    } else {
+                        window.addEventListener("resize", fixWidths, false);
+                        window.addEventListener("orientationchange", fixWidths, false);
                     }
-                    // Add listeners to fix the widths when the device is rotated or the window is resized
-                    window.addEventListener("resize", fixWidths, false);
-                    window.addEventListener("orientationchange", fixWidths, false);
 
                     // Set the initial height of the first level menu
                     checkHeight(menu);
@@ -194,7 +205,7 @@
                                     setCurrent(nextList);
                                     menu.animate({left: nextLeft}, opts.showSpeed);
 
-                                    if (currentTextHolder != false) {
+                                    if (currentTextHolder !== false) {
                                         currentTextHolder.text(link.text());
                                     }
                                     return false;

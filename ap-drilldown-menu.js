@@ -223,7 +223,8 @@
                                     menu.animate({left: nextLeft}, opts.showSpeed);
 
                                     if (currentTextHolder !== false) {
-                                        currentTextHolder.text(link.text());
+                                        // Set the current text without getting the text within the icon span tag.
+                                        currentTextHolder.text(link.clone().children().remove().end().text());
                                     }
                                     return false;
                                 }

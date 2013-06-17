@@ -27,3 +27,12 @@ That's it! There is a set of options that can be passed to this method.
     toggleSpeed: 200
 
 Adjust these to suit your navigation's structure and naming conventions.
+
+## FAQ
+
+#### Why does the window zoom when a link is clicked?
+A zoom issue is probably due to an improper/missing attribute on a meta tag. Be sure that "initial-scale=1;" is inside the content attribute of your <meta name="viewport"> tag.
+
+```html
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0" />
+```

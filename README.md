@@ -34,5 +34,5 @@ Adjust these to suit your navigation's structure and naming conventions.
 A zoom issue is probably due to an improper/missing attribute on a meta tag. Be sure that "initial-scale=1;" is inside the content attribute of your <meta name="viewport"> tag.
 
 ```html
-<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0" />
+<meta name="viewport" content="initial-scale=1.0">
 ```

@@ -107,7 +107,10 @@
 
                     backLink.hide();
 
-                    backLink.click(function() {
+                    backLink.click(function(e) {
+
+                        e.preventDefault();
+
                         var b = $(this);
                         var prevLeftVal = parseFloat(menu.css('left')) + container.width();
                         menu.animate({ left: prevLeftVal },  opts.showSpeed, function(){
@@ -119,8 +122,11 @@
                             if (currentTextHolder !== false && currentParent.is(css.menuTopTest) === false) {
                                 currentTextHolder.text(getCurrentText(currentParent.prev()));
                             }
+
+                            checkHeight($('.' + css.current));
                         });
-                        return false;
+
+
                     });
 
                     // Set internal functions. Set here so that local variables are available
@@ -215,9 +221,14 @@
 
                             link.append('<span class="' + css.icon + '">' + opts.parentIconText + '</span>');
 
-                            link.click(function() {
+                            link.click(function(e) {
+
                                 // Checking window width - need to know whether to make the click event scroll down the menus or not.
                                 if ( $(window).width() <= opts.maxWindowWidth) {
+
+                                    // Cancel the page load if it's a parent link.
+                                    e.preventDefault();
+
                                     var nextList = $(this).next();
                                     var parentList = link.parents('ul:first');
                                     var isFirstLevel = parentList.is(css.menuTopTest);
@@ -232,7 +243,6 @@
                                         // Set the current text without getting the text within the icon span tag.
                                         currentTextHolder.text(getCurrentText(link));
                                     }
-                                    return false;
                                 }
                             });
 
@@ -263,16 +273,15 @@
                         }
 
                         ancestor.attr('style', '');
+
                     } else {
                         container.css('height', $('.' + css.current).css('height'));
                         if ( ancestor.hasClass('expanded')) ancestor.show();
 
-                        if ( !$('.' + css.current).hasClass(css.menuTop) ) {
-                            $('.' + css.current).show().parent().closest('.sub-menu').show();
-                        }
-
                         $('.' + css.current).show().parent().closest('.sub-menu').show();
                     }
+                    // Check the heights after the resize - just in case.
+                    checkHeight( $('.' + css.current, container) );
                 };
             }
         });

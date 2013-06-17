@@ -117,7 +117,7 @@
                             reset(current);
                             setCurrent(currentParent);
                             if (currentTextHolder !== false && currentParent.is(css.menuTopTest) === false) {
-                                currentTextHolder.text(currentParent.prev().text());
+                                currentTextHolder.text(getCurrentText(currentParent.prev()));
                             }
                         });
                         return false;
@@ -175,6 +175,11 @@
                         }
                     };
 
+                    // Get the current text of the link / parent link.
+                    var getCurrentText = function(el) {
+                        return el.clone().children().remove().end().text();
+                    };
+
                     /**
                      * Add listeners to fix the widths when the device is rotated or the window is resized
                      */
@@ -200,13 +205,14 @@
                                 var li = $('<li class="' + opts.cloneClass + '"></li>');
 
                                 li.append(clone);
-
                                 link.next().prepend(li);
+
                                 if (typeof opts.prependCurrentOnChildCallback == 'function') {
                                     opts.prependCurrentOnChildCallback.apply(clone);
                                 }
 
                             }
+
                             link.append('<span class="' + css.icon + '">' + opts.parentIconText + '</span>');
 
                             link.click(function() {
@@ -224,7 +230,7 @@
 
                                     if (currentTextHolder !== false) {
                                         // Set the current text without getting the text within the icon span tag.
-                                        currentTextHolder.text(link.clone().children().remove().end().text());
+                                        currentTextHolder.text(getCurrentText(link));
                                     }
                                     return false;
                                 }

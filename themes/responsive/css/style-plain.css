@@ -73,52 +73,38 @@ a {text-decoration: none;}
     width:40px;
 }
 
-.navigation {float: right;}
-.navigation .menu {display: block;position: relative;}
-.navigation .menu li {position: relative;display: block;float: left;}
-.navigation .menu li:hover > a {background: rgba(0,0,0,0.1);}
+/* Navigation */
 
-.navigation .menu li .submenu {display: none;position: absolute;top: 100%;left: 0;background: #fff;box-shadow: 0 1px 5px 1px rgba(0,0,0,0.2);min-width: 100%;}
-.navigation .menu li .submenu li {float: none;clear: both;font-size: 75%;font-weight: bold;text-transform: uppercase;}
-.navigation .menu li .submenu a {display: block;padding: 3px;position: relative;color:#000;}
+/* Show the navigation on load */
+.navigation {display:block;position: relative;z-index: 10;width:100%;background:#fff;}
+.navigation:after {clear:both;content:".";display:block;height:0;line-height:0;visibility:hidden;}
 
-.navigation .menu > li:hover > .submenu {display: block;}
-.navigation .menu li .submenu {display: none;}
+/* Based, required styles */
+.navigation ul {margin:0;padding:0;background:#fff;width:100%;position:relative;}
+.navigation li {position:static;list-style: none;}
+.navigation ul ul {display:none;position:absolute;top:0;}
+.navigation li a {display:block;}
 
-.navigation .menu > li > a {display:block;padding: 27px;}
+/* Extra styling for navigation */
+.ap-ddmenu-link-icon {position: absolute;right:12px;}
 
-@media only screen and (max-width: 790px){
-    /* Resetting the hover show/hide */
-    .navigation .menu li:hover > .submenu {display: none;}
+/* Header styling */
+.ap-ddmenu-header {display: block;position: relative;background: #333;box-shadow: 0 1px 5px 0 rgba(0,0,0,0.5) inset;height: 35px}
+.ap-ddmenu-header .ap-ddmenu-current-text {text-align: center;color: #fff;font-weight: 400;padding:10px 0;}
+.ap-ddmenu-header .ap-ddmenu-back {position: absolute;left: 12px;top: 11px;font-size: 87.5%;font-weight: 700;color: #fff;}
 
-    .navigation {display: none;clear: both;}
-    .navigation .menu, #nav-button {display: block;}
-    .navigation, .navigation .menu li {float: none;position: static;}
+.navigation .menu li.mobile-navitem-hide {display:none;}
 
-    .navigation .menu li > a, .navigation .menu li > .submenu > li > a {display: block;padding: 10px}
-    .navigation .menu li a, .navigation .menu li .submenu a {border-bottom:1px solid rgb(0, 71, 111);}
-    .navigation .menu li > .submenu {position: relative;left: auto;top: auto;bottom: auto;background: none;font-size: inherit;box-shadow: none;min-width: 0;position: absolute;width: 100%;top: 0}
-
-    .navigation .menu li > .submenu li {float: none;clear: both;font-size: inherit;font-weight: 400;text-transform: none;}
-
-    .navigation .menu li:last-child a {border-bottom: 0 none;}
-
-    .ap-ddmenu-header {display: block;position: relative;background: #333;box-shadow: 0 1px 5px 0 rgba(0,0,0,0.5) inset;height: 35px}
-    .ap-ddmenu-header .ap-ddmenu-current-text {text-align: center;color: #fff;font-weight: 400;padding:10px 0;}
-    .ap-ddmenu-header .ap-ddmenu-back {position: absolute;left: 12px;top: 11px;font-size: 87.5%;font-weight: 700;color: #fff;}
-}
-
-/* Styling for IE mobile nav */
-
-.mobile .navigation .menu li:hover > .submenu {display: none;}
-.mobile .navigation {display: none;clear: both;}
-.mobile .navigation .menu, .mobile #nav-button {display: block;background: #000;}
-.mobile .navigation, .mobile .navigation .menu li {float: none;position: static;}
-.mobile .navigation .menu li > a, .mobile .navigation .menu li > .submenu > li > a {display: block;padding: 10px}
-.mobile .navigation .menu li a, .mobile .navigation .menu li .submenu a {border-bottom:1px solid rgb(0, 71, 111);}
-.mobile .navigation .menu li > .submenu {position: relative;left: auto;top: auto;bottom: auto;background: none;font-size: inherit;box-shadow: none;min-width: 0;position: absolute;width: 100%;top: 0}
-.mobile .navigation .menu li > .submenu li {float: none;clear: both;font-size: inherit;font-weight: 400;text-transform: none;}
+.dd-mobile .navigation {clear:both;}
+.dd-mobile .navigation .menu li:hover > .submenu {display: none;}
+.dd-mobile .navigation {display: none;clear: both;}
+.dd-mobile .navigation .menu, .dd-mobile #nav-button {display: block;background: #000;}
+.dd-mobile .navigation, .dd-mobile .navigation .menu li {float: none;position: static;}
+.dd-mobile .navigation .menu li > a, .dd-mobile .navigation .menu li > .submenu > li > a {display: block;padding: 10px}
+.dd-mobile .navigation .menu li a, .dd-mobile .navigation .menu li .submenu a {border-bottom:1px solid rgb(0, 71, 111);}
+.dd-mobile .navigation .menu li > .submenu {position: relative;left: auto;top: auto;bottom: auto;background: none;font-size: inherit;box-shadow: none;min-width: 0;position: absolute;width: 100%;top: 0}
+.dd-mobile .navigation .menu li > .submenu li {float: none;clear: both;font-size: inherit;font-weight: 400;text-transform: none;}
 .mobile .navigation .menu li:last-child a {border-bottom: 0 none;}
 .mobile .ap-ddmenu-header {display: block;position: relative;background: #333;box-shadow: 0 1px 5px 0 rgba(0,0,0,0.5) inset;height: 35px}
 .mobile .ap-ddmenu-header .ap-ddmenu-current-text {text-align: center;color: #fff;font-weight: 400;padding:10px 0;}
-.mobile .ap-ddmenu-header .ap-ddmenu-back {position: absolute;left: 12px;top: 11px;font-size: 87.5%;font-weight: 700;color: #fff;}.mobile
+.mobile .ap-ddmenu-header .ap-ddmenu-back {position: absolute;left: 12px;top: 11px;font-size: 87.5%;font-weight: 700;color: #fff;}

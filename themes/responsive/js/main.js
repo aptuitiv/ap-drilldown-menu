@@ -1,34 +1,37 @@
 (function($){
-	$(function(){
+    $(function(){
+        placeWindowWidth('#width-tracker');
 
-		$(window).on('load resize', function(){
-			placeWindowWidth('#width-tracker');
-		});
+        $(window).on('resize', function(){
+            updateWindowWidth('#width-tracker');
+        });
 
-		// $('#nav-button').on('click', function(e){
+        $('.navigation ul:first').apDrillDownMenu();
 
-		// 	e.preventDefault();
+    });
 
-		// 	if ( !$('.navigation').is(':animated') ) {
-		// 		$('.navigation').slideToggle('fast', function(){
-		// 			var el = $(this);
-		// 			el.toggleClass('expanded');
-		// 			if (el.hasClass('expanded')) $('.navigation ul:first').apDrillDownMenu();
-		// 		});
-		// 	}
-		// });
+    function placeWindowWidth(selector){
+        if (typeof selector != 'string') return false;
 
-		$('.navigation ul:first').apDrillDownMenu();
+        if (! $(selector).length) {
+            var s = '<div id="' + selector.substr(1, selector.length - 1) + '"><div>Window width:</div><span></span></div>';
+            $('body').append(s);
+        }
 
-	});
+        updateWindowWidth(selector);
+    }
 
-	function placeWindowWidth(selector){
-		if (typeof selector != 'string') return false;
+    function updateWindowWidth(selector){
+        var s = $(selector);
+        var w = $(window).width();
+        if (!s.length) return false;
 
-		var s = $(selector);
-		var w = $(window).width();
-		(s.children('span')) ? s.children('span').text(w + 'px') : s.html(w + 'px');
-	}
+        if (s.children('span')) {
+            s.children('span').text(w + 'px');
+        } else {
+            s.html(w + 'px');
+        }
+    }
 
 
 })(jQuery);

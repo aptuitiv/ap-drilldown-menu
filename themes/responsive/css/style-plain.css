@@ -53,8 +53,6 @@ a {text-decoration: none;}
 .ap-ddmenu-header .ap-ddmenu-current-text {text-align: center;color: #fff;font-weight: 400;padding:10px 0;}
 .ap-ddmenu-header .ap-ddmenu-back {position: absolute;left: 12px;top: 11px;font-size: 87.5%;font-weight: 700;color: #fff;}
 
-.navigation .menu li.mobile-navitem-hide {display:none;}
-
 .dd-mobile .navigation {clear:both;}
 .dd-mobile .navigation .menu li:hover > .submenu {display: none;}
 .dd-mobile .navigation {display: none;clear: both;}

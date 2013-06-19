@@ -111,21 +111,24 @@
 
                         e.preventDefault();
 
-                        var b = $(this);
-                        var prevLeftVal = parseFloat(menu.css('left')) + container.width();
-                        menu.animate({ left: prevLeftVal },  opts.showSpeed, function(){
-                            var current = $('ul.' + css.current, menu);
-                            current.hide();
-                            var currentParent = current.parents('ul:first');
-                            reset(current);
-                            setCurrent(currentParent);
-                            if (currentTextHolder !== false && currentParent.is(css.menuTopTest) === false) {
-                                currentTextHolder.text(getCurrentText(currentParent.prev()));
-                            }
+                        if (!menu.is(':animated')) {
 
-                            checkHeight($('.' + css.current));
-                        });
+                            var b = $(this);
+                            var prevLeftVal = parseFloat(menu.css('left')) + container.width();
 
+                            menu.animate({ left: prevLeftVal },  opts.showSpeed, function(){
+                                var current = $('ul.' + css.current, menu);
+                                current.hide();
+                                var currentParent = current.parents('ul:first');
+                                reset(current);
+                                setCurrent(currentParent);
+                                if (currentTextHolder !== false && currentParent.is(css.menuTopTest) === false) {
+                                    currentTextHolder.text(getCurrentText(currentParent.prev()));
+                                }
+
+                                checkHeight($('.' + css.current));
+                            });
+                        }
 
                     });
 

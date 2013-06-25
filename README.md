@@ -36,3 +36,72 @@ A zoom issue is probably due to an improper/missing attribute on a meta tag. Be 
 ```html
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 ```
+#### My CSS isn't working correctly!
+The CSS is somewhat tricky, depending on how your navigation is set up and styled. If you use a CSS dropdown menu, the styles for the sub-navigation and its items will need to be overridden by the CSS in your media query, so the hover state on an <li> doesn't show its child <ul>. Here's a good boilerplate to get you started.
+
+```css
+.menu li {
+    list-style: none;
+    float: left;
+    position: relative;
+}
+
+.menu li a {
+    display: block;
+}
+
+.menu li ul {
+    display: none;
+    position: absolute;
+    top: 100%; left: 0;
+}
+
+.menu li:hover ul {
+    display: block;
+}
+
+.ap-ddmenu-toggle {
+    display: none;
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    background: #333;
+}
+
+@media (max-device-width: 768px) {
+    .nav-wrap {
+        display: none;
+    }
+
+    .ap-ddmenu-toggle {
+        display: block;
+    }
+
+    .menu {
+        position: relative;
+    }
+
+    .menu li:hover ul {
+        display: none;
+    }
+
+    .menu li ul {
+        position: absolute;
+        top: 0;
+        left: 100%;
+    }
+
+    .menu li {
+        float: none;
+        width: 100%;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        /* We set the position to static so the child <ul> elements are positioned based on the top level <ul> */
+        position: static;
+    }
+}
+```

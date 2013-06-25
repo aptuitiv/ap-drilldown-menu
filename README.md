@@ -37,7 +37,7 @@ A zoom issue is probably due to an improper/missing attribute on a meta tag. Be 
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 ```
 #### My CSS isn't working correctly!
-The CSS is somewhat tricky, depending on how your navigation is set up and styled. If you use a CSS dropdown menu, the styles for the sub-navigation and its items will need to be overridden by the CSS in your media query, so the hover state on an <li> doesn't show its child <ul>. Here's a good boilerplate to get you started.
+The CSS is somewhat tricky, depending on how your navigation is set up and styled. If you use a CSS dropdown menu, the styles for the sub-navigation and its items will need to be overridden by the CSS in your media query, so the hover state on an &lt;li&gt; doesn't show its child &lt;ul&gt;. Here's a good boilerplate to get you started.
 
 ```css
 .menu li {

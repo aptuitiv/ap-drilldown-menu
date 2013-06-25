@@ -195,7 +195,7 @@
 
                     // IE8- doesn't support addEventListener - use attachEvent instead.
                     if (!window.addEventListener) {
-                        window.attachEvent('resize', fixWidths);
+                        window.attachEvent('onresize', fixWidths);
                     } else {
                         window.addEventListener("resize", fixWidths, false);
                         window.addEventListener("orientationchange", fixWidths, false);

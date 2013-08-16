@@ -208,13 +208,13 @@
                     menu.find('a').each(function() {
                         var link = $(this);
                         // If the link has a child menu
-                        if (link.next().is('ul')) {
+                        if (link.siblings('ul').length >) {
                             if (opts.prependCurrentOnChild) {
                                 var clone = link.clone(true);
                                 var li = $('<li class="' + opts.cloneClass + '"></li>');
 
                                 li.append(clone);
-                                link.next().prepend(li);
+                                link.siblings('ul').prepend(li);
 
                                 if (typeof opts.prependCurrentOnChildCallback == 'function') {
                                     opts.prependCurrentOnChildCallback.apply(clone);
@@ -232,7 +232,7 @@
                                     // Cancel the page load if it's a parent link.
                                     e.preventDefault();
 
-                                    var nextList = $(this).next();
+                                    var nextList = $(this).siblings('ul');
                                     var parentList = link.parents('ul:first');
                                     var isFirstLevel = parentList.is(css.menuTopTest);
                                     var parentLeft = (isFirstLevel) ? 0 : parseFloat(menu.css('left'));

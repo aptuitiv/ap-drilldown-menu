@@ -208,7 +208,7 @@
                     menu.find('a').each(function() {
                         var link = $(this);
                         // If the link has a child menu
-                        if (link.siblings('ul').length >) {
+                        if (link.siblings('ul').length > 0) {
                             if (opts.prependCurrentOnChild) {
                                 var clone = link.clone(true);
                                 var li = $('<li class="' + opts.cloneClass + '"></li>');

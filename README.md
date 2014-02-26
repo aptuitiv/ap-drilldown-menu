@@ -28,7 +28,7 @@ That's it! There is a set of options that can be passed to this method.
 
 Adjust these to suit your navigation's structure and naming conventions.
 
-## FAQ
+--------------------------------------------------
 
 #### Why does the window zoom when a link is clicked?
 A zoom issue is probably due to an improper/missing attribute on a meta tag. Be sure that you've got a `<meta name="viewport">` tag and the content attribute is set accordingly. For example:

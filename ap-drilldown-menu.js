@@ -59,10 +59,12 @@
 
                 // Checks the height of the element against the max height
                 var checkHeight = function(el) {
-                    if (maxHeight > 0) {
-                        if (parseInt(el.css('height')) > maxHeight) el.addClass(css.scroll).css('height', maxHeight);
-                    } else {
-                        container.css('height', el.outerHeight() + $(opts.headerSelector).outerHeight());
+                    if ( $(window).width() < opts.maxWindowWidth ) {
+                        if (maxHeight > 0) {
+                            if (parseInt(el.css('height')) > maxHeight) el.addClass(css.scroll).css('height', maxHeight);
+                        } else {
+                            container.css('height', el.outerHeight() + $(opts.headerSelector).outerHeight());
+                        }
                     }
                 };
 
@@ -202,9 +204,7 @@
                     }
 
                     // Set the initial height of the first level menu
-                    if ( $(window).width() > opts.maxWindowWidth ) {
-                        checkHeight(menu);
-                    }
+                    checkHeight(menu);
 
                     // Handle the clicks for each menu item
                     menu.find('a').each(function() {
@@ -261,9 +261,7 @@
 
                 } else {
                     // This element is being set up again. Make sure that the menu dimensions are correct
-                    if ( $(window).width() > opts.maxWindowWidth ) {
-                        checkHeight($('ul.' + css.current, container));
-                    }
+                    checkHeight($('ul.' + css.current, container));
                 }
 
                 var showOrHide = function() {

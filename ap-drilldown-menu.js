@@ -255,10 +255,7 @@
                     });
 
                     $(window).on('resize', function(){
-                        //delay(function(){
-                            showOrHide();
-                        //}, 100);
-
+                        showOrHide();
                         fixWidths();
                     });
 

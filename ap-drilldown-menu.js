@@ -202,7 +202,9 @@
                     }
 
                     // Set the initial height of the first level menu
-                    checkHeight(menu);
+                    if ( $(window).width() > opts.maxWindowWidth ) {
+                        checkHeight(menu);
+                    }
 
                     // Handle the clicks for each menu item
                     menu.find('a').each(function() {
@@ -253,21 +255,23 @@
                     });
 
                     $(window).on('resize', function(){
-                        delay(function(){
+                        //delay(function(){
                             showOrHide();
-                        }, 100);
+                        //}, 100);
 
                         fixWidths();
                     });
 
                 } else {
                     // This element is being set up again. Make sure that the menu dimensions are correct
-                    checkHeight($('ul.' + css.current, container));
+                    if ( $(window).width() > opts.maxWindowWidth ) {
+                        checkHeight($('ul.' + css.current, container));
+                    }
                 }
 
                 var showOrHide = function() {
                     if ( $(window).width() > opts.maxWindowWidth ){
-                        container.css('height', 0);
+                        container.attr('style', '');
 
                         $(css.menuTopTest).find('ul').attr('style', '');
 
@@ -282,9 +286,10 @@
                         if ( ancestor.hasClass('expanded')) ancestor.show();
 
                         $('.' + css.current).show().parent().closest('.sub-menu').show();
+
+                        // Check the heights after the resize - just in case.
+                        checkHeight( $('.' + css.current, container) );
                     }
-                    // Check the heights after the resize - just in case.
-                    checkHeight( $('.' + css.current, container) );
                 };
             }
         });

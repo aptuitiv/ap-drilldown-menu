@@ -1,3 +1,4 @@
+/*! ap-drilldown-menu v0.1.1 | (c) 2013, 2015 Aptuitiv, Inc. */
 ;(function($, window, undefined) {
 
     // Modernizr 2.6.2 (Custom Build) | MIT & BSD - Code to test support for media queries here only.
